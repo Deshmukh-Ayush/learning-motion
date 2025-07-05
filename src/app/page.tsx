@@ -1,9 +1,12 @@
 import { ParallaxImage } from "@/components/parallaxImage";
+import { Sidebar } from "@/components/sidebar";
 
 export default function Home() {
   return (
     <div>
-      <ParallaxImage />
+      {/* <ParallaxImage /> */}
+      {/* <Practise /> */}
+      <Sidebar />
     </div>
   );
 }
