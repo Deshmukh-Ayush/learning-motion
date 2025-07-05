@@ -9,7 +9,7 @@ export const Sidebar = () => {
   return (
     <div className="flex h-screen w-full items-center justify-center bg-neutral-800">
       <button
-        className="mb-4 rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
+        className="rounded-md bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
         onClick={() => setIsOpen(!isOpen)}
       >
         Toggle Sidebar

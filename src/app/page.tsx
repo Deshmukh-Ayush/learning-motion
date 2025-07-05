@@ -1,3 +1,4 @@
+import MaskingButton from "@/components/maskingButton";
 import { ParallaxImage } from "@/components/parallaxImage";
 import { Sidebar } from "@/components/sidebar";
 
@@ -6,7 +7,8 @@ export default function Home() {
     <div>
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <MaskingButton />
     </div>
   );
 }
