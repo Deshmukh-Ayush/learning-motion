@@ -9,7 +9,7 @@ export default function MaskingButton() {
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <motion.button
-        className="relative cursor-pointer overflow-hidden rounded-full border bg-white px-48 py-16 text-black"
+        className="relative cursor-pointer overflow-hidden rounded-full border bg-white px-48 py-16 text-3xl text-black"
         initial={false}
         onHoverStart={() => setIsHovering(true)}
         onHoverEnd={() => setIsHovering(false)}
@@ -27,7 +27,7 @@ export default function MaskingButton() {
           About Us
         </motion.p>
         <motion.p
-          className="absolute z-[2] m-0"
+          className="absolute z-[2] m-0 text-white"
           initial={false}
           transition={{ type: "spring", mass: 1, damping: 17, stiffness: 302 }}
           animate={{
@@ -36,10 +36,10 @@ export default function MaskingButton() {
           }}
           style={{ left: "50%" }}
         >
-          OUR WORK
+          About Us
         </motion.p>
         <motion.div
-          className="absolute bottom-0 left-0 z-[1] h-full w-full rounded-full bg-[#5b76f0]"
+          className="absolute bottom-0 left-0 z-[1] h-full w-full rounded-full bg-[#030303]"
           style={{ originY: 1 }}
           initial={false}
           transition={{ type: "spring", mass: 1, damping: 17, stiffness: 302 }}
