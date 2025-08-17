@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { slide, scale } from "../anim";
+import { FlipLink } from "@/components/ui/text-effect-flipper";
 
 interface LinkData {
   title: string;
@@ -40,9 +43,9 @@ export default function Index({
         animate={isActive ? "open" : "closed"}
         className="absolute left-[-30px] h-[10px] w-[10px] rounded-full bg-white"
       />
-      <Link href={href} className="font-light text-white no-underline">
+      <FlipLink href={href} className="font-light text-white no-underline">
         {title}
-      </Link>
+      </FlipLink>
     </motion.div>
   );
 }

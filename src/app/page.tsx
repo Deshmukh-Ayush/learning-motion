@@ -9,7 +9,7 @@ import TextAnimation from "@/components/text-animation";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-screen w-full bg-neutral-100">
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
       {/* <Sidebar /> */}

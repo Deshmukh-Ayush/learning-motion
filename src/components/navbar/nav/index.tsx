@@ -1,9 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { menuSlide } from "../anim";
 import Link from "./link";
 import Curve from "./curve";
+import Image from "next/image";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -57,10 +60,11 @@ export default function Index() {
 const Footer = () => {
   return (
     <div className="text-md mt-10 flex w-full justify-between gap-2">
-      <a>Awwwards</a>
-      <a>Instagram</a>
-      <a>Dribble</a>
-      <a>LinkedIn</a>
+      <a href="https://www.instagram.com/cloff.studio">
+        <Image src="/Ig-logo.png" alt="ig logo" height={30} width={30} />
+      </a>
+      <Image src="/LI-In-Bug.png" alt="ig logo" height={30} width={30} />
+      <Image src="/X-logo.png" alt="ig logo" height={30} width={30} />
     </div>
   );
 };
