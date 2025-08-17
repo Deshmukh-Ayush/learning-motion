@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import React, { useRef } from "react";
+import { TextShimmerWave } from "./ui/text-shimmer-effect";
 
 export default function TextAnimation() {
   const container = useRef(null);
@@ -14,7 +15,20 @@ export default function TextAnimation() {
 
   return (
     <div>
-      <div className="h-screen w-full bg-neutral-800"></div>
+      <div className="relative flex h-screen w-full items-center justify-center bg-neutral-800">
+        <h2 className="absolute bottom-0 left-0 text-8xl tracking-tighter">
+          <TextShimmerWave
+            className="[--base-color:#404040] [--base-gradient-color:#a3a3a3]"
+            duration={1}
+            spread={1}
+            zDistance={1}
+            scaleDistance={1.1}
+            rotateYDistance={20}
+          >
+            Scroll Down....
+          </TextShimmerWave>
+        </h2>
+      </div>
 
       <div ref={container} className="relative h-[200vh] bg-neutral-950">
         <Section1 scrollYProgress={scrollYProgress} />

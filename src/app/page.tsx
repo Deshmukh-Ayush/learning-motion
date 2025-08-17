@@ -2,7 +2,7 @@ import { BackgroundGradient } from "@/components/backgroundGradient";
 import { LandingAnimation } from "@/components/landingAnimation";
 import Loader from "@/components/loader";
 import MaskingButton from "@/components/maskingButton";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar/index";
 import { ParallaxImage } from "@/components/parallaxImage";
 import { Sidebar } from "@/components/sidebar";
 import TextAnimation from "@/components/text-animation";
@@ -15,10 +15,10 @@ export default function Home() {
       {/* <Sidebar /> */}
       {/* <MaskingButton /> */}
       {/* <BackgroundGradient /> */}
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <LandingAnimation /> */}
       {/* <Loader /> */}
-      <TextAnimation />
+      {/* <TextAnimation /> */}
     </div>
   );
 }
