@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const DURATION = 0.25;
 const STAGGER = 0.025;
@@ -9,18 +10,36 @@ const STAGGER = 0.025;
 interface FlipLinkProps {
   children: string;
   href: string;
+  onClick?: () => void;
   className: string;
 }
 
 const MotionLink = motion(Link);
 
-const FlipLink: React.FC<FlipLinkProps> = ({ children, href, className }) => {
+const FlipLink: React.FC<FlipLinkProps> = ({
+  children,
+  href,
+  className,
+  onClick,
+}) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick();
+      setTimeout(() => {
+        router.push(href); // navigate after animation
+      }, 350); // match ANIM_MS
+    }
+  };
+
   return (
     <MotionLink
       initial="initial"
       whileHover="hovered"
-      target="_blank"
       href={href}
+      onClick={handleClick}
       className={cn(
         "relative block overflow-hidden whitespace-nowrap dark:text-white/90",
         className,

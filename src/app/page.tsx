@@ -1,4 +1,6 @@
 import { BackgroundGradient } from "@/components/backgroundGradient";
+import Basics from "@/components/gsap/basics";
+import { ScrollTriggerDemo } from "@/components/gsap/scrollTrigger";
 import { LandingAnimation } from "@/components/landingAnimation";
 import Loader from "@/components/loader";
 import MaskingButton from "@/components/maskingButton";
@@ -15,10 +17,12 @@ export default function Home() {
       {/* <Sidebar /> */}
       {/* <MaskingButton /> */}
       {/* <BackgroundGradient /> */}
-      <Navbar />
       {/* <LandingAnimation /> */}
       {/* <Loader /> */}
       {/* <TextAnimation /> */}
+      {/* <Basics /> */}
+
+      <ScrollTriggerDemo />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { slide, scale } from "../anim";
 import { FlipLink } from "@/components/ui/text-effect-flipper";
+import { cn } from "@/lib/utils";
 
 interface LinkData {
   title: string;
@@ -15,6 +16,7 @@ interface IndexProps {
   data: LinkData;
   isActive: boolean;
   setSelectedIndicator: (href: string) => void;
+  closeNav: () => void;
   className?: string;
 }
 
@@ -22,6 +24,7 @@ export default function Index({
   data,
   isActive,
   setSelectedIndicator,
+  closeNav,
   className,
 }: IndexProps) {
   const { title, href, index } = data;
@@ -43,7 +46,11 @@ export default function Index({
         animate={isActive ? "open" : "closed"}
         className="absolute left-[-30px] h-[10px] w-[10px] rounded-full bg-white"
       />
-      <FlipLink href={href} className="font-light text-white no-underline">
+      <FlipLink
+        href={href}
+        onClick={closeNav}
+        className={`${(cn("font-light text-white no-underline"), className)}`}
+      >
         {title}
       </FlipLink>
     </motion.div>

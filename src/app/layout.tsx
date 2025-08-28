@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/lenis-provider";
+// import Navbar from "@/components/navbar";
+import TransitionsProvider from "@/components/transitionsProvider";
 
 const montserratAlternatives = Montserrat_Alternates({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -21,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserratAlternatives.className} antialiased`}>
-        <LenisProvider>{children}</LenisProvider>
+        {/* <Navbar /> */}
+
+        <LenisProvider>
+          <TransitionsProvider>{children}</TransitionsProvider>
+        </LenisProvider>
       </body>
     </html>
   );

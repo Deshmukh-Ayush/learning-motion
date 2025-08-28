@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { menuSlide } from "../anim";
 import Link from "./link";
@@ -15,7 +15,7 @@ const navItems = [
   { title: "Contact", href: "/contact" },
 ];
 
-export default function Index() {
+export default function Index({ closeNav }: { closeNav: () => void }) {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
@@ -25,7 +25,7 @@ export default function Index() {
       initial="initial"
       animate="enter"
       exit="exit"
-      className="fixed top-0 right-0 h-screen bg-[#292929] text-white"
+      className="nav-root fixed top-0 right-0 z-1 h-screen bg-[#292929] text-white"
     >
       <div className="box-border flex h-full flex-col justify-between p-[100px]">
         {/* nav section */}
@@ -43,6 +43,7 @@ export default function Index() {
               data={{ ...data, index }}
               isActive={selectedIndicator == data.href}
               setSelectedIndicator={setSelectedIndicator}
+              closeNav={closeNav}
             />
           ))}
         </div>
