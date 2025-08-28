@@ -1,4 +1,6 @@
 import { BackgroundGradient } from "@/components/backgroundGradient";
+import DebugDistortionShader from "@/components/debug";
+import DistortImage from "@/components/distortionShader";
 import Basics from "@/components/gsap/basics";
 import { ScrollTriggerDemo } from "@/components/gsap/scrollTrigger";
 import { LandingAnimation } from "@/components/landingAnimation";
@@ -15,14 +17,29 @@ export default function Home() {
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
       {/* <Sidebar /> */}
-      {/* <MaskingButton /> */}
+      {/* <div className="flex h-full items-center justify-center">
+        <MaskingButton href="/" size="lg">
+          About Us
+        </MaskingButton>
+      </div> */}
       {/* <BackgroundGradient /> */}
       {/* <LandingAnimation /> */}
       {/* <Loader /> */}
       {/* <TextAnimation /> */}
       {/* <Basics /> */}
 
-      <ScrollTriggerDemo />
+      {/* <ScrollTriggerDemo /> */}
+
+      <div className="mx-auto h-[70vh] w-5xl bg-neutral-400">
+        {/* <DistortImage src="/AD.png" className="h-[600px] w-full" /> */}
+        <DistortImage
+          src="/AD.png"
+          speed={0.7}
+          intensity={0.7}
+          decay={0.06}
+          className="h-[800px] w-full"
+        />
+      </div>
     </div>
   );
 }
