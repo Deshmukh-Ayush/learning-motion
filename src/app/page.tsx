@@ -1,4 +1,7 @@
+"use client";
+
 import { BackgroundGradient } from "@/components/backgroundGradient";
+import Bento from "@/components/interactive-button";
 import DebugDistortionShader from "@/components/debug";
 import DistortImage from "@/components/distortionShader";
 import Basics from "@/components/gsap/basics";
@@ -10,10 +13,16 @@ import { Navbar } from "@/components/navbar/index";
 import { ParallaxImage } from "@/components/parallaxImage";
 import { Sidebar } from "@/components/sidebar";
 import TextAnimation from "@/components/text-animation";
+import InteractiveButton from "@/components/interactive-button";
 
 export default function Home() {
+  const handleClick = () => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 2000);
+    });
+  };
   return (
-    <div className="h-screen w-full bg-neutral-100">
+    <div className="flex h-screen w-full items-center justify-center bg-neutral-100">
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
       {/* <Sidebar /> */}
@@ -29,9 +38,8 @@ export default function Home() {
       {/* <Basics /> */}
 
       {/* <ScrollTriggerDemo /> */}
-
+      {/* 
       <div className="mx-auto h-[70vh] w-5xl bg-neutral-400">
-        {/* <DistortImage src="/AD.png" className="h-[600px] w-full" /> */}
         <DistortImage
           src="/AD.png"
           speed={0.7}
@@ -39,7 +47,8 @@ export default function Home() {
           decay={0.06}
           className="h-[800px] w-full"
         />
-      </div>
+      </div> */}
+      <InteractiveButton onClick={handleClick}>Something</InteractiveButton>
     </div>
   );
 }

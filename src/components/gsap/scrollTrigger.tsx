@@ -14,7 +14,7 @@ export const ScrollTriggerDemo = () => {
       </div>
       <div className="flex h-screen items-center justify-center bg-neutral-600">
         <div className="flex flex-col">
-          <Heading>Cloff</Heading>
+          <Heading>Suppose cloff is written multiple times</Heading>
           <SubHeading>
             Digital Studio focused on building great products.
           </SubHeading>

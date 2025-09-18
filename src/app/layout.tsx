@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat_Alternates } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/lenis-provider";
 // import Navbar from "@/components/navbar";
+import { Toaster } from "sonner";
 import TransitionsProvider from "@/components/transitionsProvider";
 
-const montserratAlternatives = Montserrat_Alternates({
-  weight: ["400", "500", "600", "700", "800", "900"],
+const inter = Inter_Tight({
   subsets: ["latin"],
 });
 
@@ -22,11 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserratAlternatives.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         {/* <Navbar /> */}
 
         <LenisProvider>
-          <TransitionsProvider>{children}</TransitionsProvider>
+          <TransitionsProvider>
+            <main>{children}</main>
+            <Toaster />
+          </TransitionsProvider>
         </LenisProvider>
       </body>
     </html>
