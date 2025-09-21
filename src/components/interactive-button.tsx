@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useEffect, useCallback, useState } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -37,110 +37,52 @@ export default function InteractiveButton({
 
   useEffect(() => {
     if (!clickEnter) return;
-
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter" && state === "idle") {
-        handleClickInternal();
+        // call the shared performer with a synthetic event (like original)
+        performer({} as React.MouseEvent<HTMLButtonElement>);
       }
     };
-
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [clickEnter, state]);
 
-  const handleClickInternal = async () => {
-    if (state !== "idle") return;
+  // shared action performer (combines both original handlers)
+  const performer = useCallback(
+    async (event?: React.MouseEvent<HTMLButtonElement>) => {
+      if (state !== "idle") return;
+      setState("loading");
 
-    setState("loading");
+      try {
+        if (onClick)
+          await onClick(event ?? ({} as React.MouseEvent<HTMLButtonElement>));
 
-    try {
-      if (onClick) {
-        const syntheticEvent = {} as React.MouseEvent<HTMLButtonElement>;
-        await onClick(syntheticEvent);
-      }
+        // mimic original setTimeout waiting for loadingDuration before success/failure branch
+        await new Promise((res) => setTimeout(res, loadingDuration));
 
-      setTimeout(async () => {
         try {
-          if (onSuccess) {
-            await onSuccess();
-          }
-
+          if (onSuccess) await onSuccess();
           setState("success");
-
-          setTimeout(() => {
-            setState("idle");
-          }, resetDelay);
-        } catch (error) {
+        } catch (err) {
           setState("failure");
-
-          if (onFailure) {
-            await onFailure();
-          }
-
-          setTimeout(() => {
-            setState("idle");
-          }, resetDelay);
+          if (onFailure) await onFailure();
         }
-      }, loadingDuration);
-    } catch (error) {
-      setState("failure");
-
-      if (onFailure) {
-        await onFailure();
+      } catch (err) {
+        setState("failure");
+        if (onFailure) await onFailure();
+      } finally {
+        setTimeout(() => setState("idle"), resetDelay);
       }
+    },
+    [state, onClick, onSuccess, onFailure, loadingDuration, resetDelay],
+  );
 
-      setTimeout(() => {
-        setState("idle");
-      }, resetDelay);
-    }
+  // click handler just delegates
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    performer(e);
   };
 
-  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (state !== "idle") return;
-
-    setState("loading");
-
-    try {
-      if (onClick) {
-        await onClick(event);
-      }
-
-      setTimeout(async () => {
-        try {
-          if (onSuccess) {
-            await onSuccess();
-          }
-
-          setState("success");
-
-          setTimeout(() => {
-            setState("idle");
-          }, resetDelay);
-        } catch (error) {
-          setState("failure");
-
-          if (onFailure) {
-            await onFailure();
-          }
-
-          setTimeout(() => {
-            setState("idle");
-          }, resetDelay);
-        }
-      }, loadingDuration);
-    } catch (error) {
-      setState("failure");
-
-      if (onFailure) {
-        await onFailure();
-      }
-
-      setTimeout(() => {
-        setState("idle");
-      }, resetDelay);
-    }
-  };
-
+  // strip unwanted DOM handlers from props (same as original)
   const {
     onDrag,
     onDragStart,
@@ -150,16 +92,95 @@ export default function InteractiveButton({
     ...filteredProps
   } = props;
 
+  // Icons (same visuals as original)
+  const Icons = {
+    enter: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="icon icon-tabler icons-tabler-outline icon-tabler-corner-down-left opacity-60"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6v6a3 3 0 0 1 -3 3h-10l4 -4m0 8l-4 -4" />
+      </svg>
+    ),
+    loading: (
+      <motion.svg
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 1,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#525252"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 3a9 9 0 1 0 9 9" />
+      </motion.svg>
+    ),
+    check: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#22c55e"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+        <path d="M9 12l2 2l4 -4" />
+      </svg>
+    ),
+    failure: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#ef4444"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="icon icon-tabler icons-tabler-outline icon-tabler-x"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </svg>
+    ),
+  };
+
+  // content mapping (same text + icons)
   const getContent = () => {
     switch (state) {
       case "loading":
-        return { text: loadingText, icon: <LoadingIcon /> };
+        return { text: loadingText, icon: Icons.loading };
       case "success":
-        return { text: successText, icon: <CheckIcon /> };
+        return { text: successText, icon: Icons.check };
       case "failure":
-        return { text: failureText, icon: <FailureIcon /> };
+        return { text: failureText, icon: Icons.failure };
       default:
-        return { text: children || "Enter", icon: <EnterIcon /> };
+        return { text: children || "Enter", icon: Icons.enter };
     }
   };
 
@@ -235,89 +256,3 @@ export default function InteractiveButton({
     </motion.button>
   );
 }
-
-const EnterIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="icon icon-tabler icons-tabler-outline icon-tabler-corner-down-left opacity-60"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6v6a3 3 0 0 1 -3 3h-10l4 -4m0 8l-4 -4" />
-    </svg>
-  );
-};
-
-const LoadingIcon = () => {
-  return (
-    <motion.svg
-      animate={{ rotate: 360 }}
-      transition={{
-        duration: 1,
-        repeat: Infinity,
-        ease: "linear",
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#525252"
-      strokeWidth="1"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 3a9 9 0 1 0 9 9" />
-    </motion.svg>
-  );
-};
-
-const CheckIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#22c55e"
-      strokeWidth="1"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-      <path d="M9 12l2 2l4 -4" />
-    </svg>
-  );
-};
-
-const FailureIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#ef4444"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="icon icon-tabler icons-tabler-outline icon-tabler-x"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
-    </svg>
-  );
-};

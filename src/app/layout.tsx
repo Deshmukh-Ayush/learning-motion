@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
-import LenisProvider from "@/components/lenis-provider";
 // import Navbar from "@/components/navbar";
 import { Toaster } from "sonner";
 import TransitionsProvider from "@/components/transitionsProvider";
@@ -25,12 +24,10 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         {/* <Navbar /> */}
 
-        <LenisProvider>
-          <TransitionsProvider>
-            <main>{children}</main>
-            <Toaster />
-          </TransitionsProvider>
-        </LenisProvider>
+        <TransitionsProvider>
+          <main>{children}</main>
+          <Toaster />
+        </TransitionsProvider>
       </body>
     </html>
   );
