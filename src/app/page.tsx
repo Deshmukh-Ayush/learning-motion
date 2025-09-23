@@ -15,13 +15,14 @@ import { Sidebar } from "@/components/sidebar";
 import TextAnimation from "@/components/text-animation";
 import InteractiveButton from "@/components/interactive-button";
 import { BentoDemo } from "@/components/bento/bento-demo";
+import { ImageExpand } from "@/components/image-expand";
 
 export default function Home() {
-  const handleClick = () => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-  };
+  // const handleClick = () => {
+  //   return new Promise((resolve) => {
+  //     setTimeout(resolve, 2000);
+  //   });
+  // };
 
   // const handleClickFailed = () => {
   //   return new Promise((_, reject) => {
@@ -57,7 +58,8 @@ export default function Home() {
       </div> */}
       {/* <InteractiveButton onClick={handleClick}>Something</InteractiveButton> */}
 
-      <BentoDemo />
+      {/* <BentoDemo /> */}
+      <ImageExpand />
     </div>
   );
 }
