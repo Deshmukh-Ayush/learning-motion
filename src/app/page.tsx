@@ -17,6 +17,7 @@ import InteractiveButton from "@/components/interactive-button";
 import { BentoDemo } from "@/components/bento/bento-demo";
 import { ImageExpand } from "@/components/image-expand";
 import Password from "@/components/password";
+import { HoverUnderline } from "@/components/hover-underline";
 
 export default function Home() {
   // const handleClick = () => {
@@ -61,7 +62,8 @@ export default function Home() {
 
       {/* <BentoDemo /> */}
       {/* <ImageExpand /> */}
-      <Password />
+      {/* <Password /> */}
+      {/* <HoverUnderline imageSrc="/cloff-ui.png">Cloff Studio</HoverUnderline> */}
     </div>
   );
 }
