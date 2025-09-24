@@ -16,6 +16,7 @@ import TextAnimation from "@/components/text-animation";
 import InteractiveButton from "@/components/interactive-button";
 import { BentoDemo } from "@/components/bento/bento-demo";
 import { ImageExpand } from "@/components/image-expand";
+import Password from "@/components/password";
 
 export default function Home() {
   // const handleClick = () => {
@@ -30,7 +31,7 @@ export default function Home() {
   //   });
   // };
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-neutral-100">
+    <div className="flex min-h-screen w-full items-center justify-center">
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
       {/* <Sidebar /> */}
@@ -59,7 +60,8 @@ export default function Home() {
       {/* <InteractiveButton onClick={handleClick}>Something</InteractiveButton> */}
 
       {/* <BentoDemo /> */}
-      <ImageExpand />
+      {/* <ImageExpand /> */}
+      <Password />
     </div>
   );
 }
