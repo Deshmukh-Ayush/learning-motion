@@ -22,17 +22,17 @@ import { ActionToolbar } from "@/components/action-toolbar";
 import { QRCode } from "@/components/qr-code";
 
 export default function Home() {
-  // const handleClick = () => {
-  //   return new Promise((resolve) => {
-  //     setTimeout(resolve, 2000);
-  //   });
-  // };
+  const handleClick = () => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 2000);
+    });
+  };
 
-  // const handleClickFailed = () => {
-  //   return new Promise((_, reject) => {
-  //     setTimeout(() => reject(new Error("Something went wrong")), 2000);
-  //   });
-  // };
+  const handleClickFailed = () => {
+    return new Promise((_, reject) => {
+      setTimeout(() => reject(new Error("Something went wrong")), 2000);
+    });
+  };
   return (
     <div className="flex min-h-screen w-full items-center justify-center">
       {/* <ParallaxImage /> */}
@@ -82,7 +82,7 @@ export default function Home() {
         className="h-[700px] w-[500px] rounded-lg"
       /> */}
       {/* <ActionToolbar /> Incomplete */}
-      <QRCode />
+      {/* <QRCode /> */}
     </div>
   );
 }
