@@ -3,7 +3,15 @@
 import React, { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
-export const ImageExpand = () => {
+export const ImageExpand = ({
+  title,
+  description,
+  src,
+}: {
+  title: string;
+  description: string;
+  src: string;
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -24,7 +32,7 @@ export const ImageExpand = () => {
                 className="mx-auto flex max-w-3xl rounded-2xl border border-dashed border-neutral-500 bg-white p-4 shadow-xl"
               >
                 <motion.img
-                  src="/girl-img.jpg"
+                  src={src}
                   alt="Girl Image"
                   className="w-80 rounded-2xl"
                   layoutId="expandable-img"
@@ -46,7 +54,7 @@ export const ImageExpand = () => {
                       filter: "blur(0px)",
                     }}
                   >
-                    Beautiful Girl
+                    {title}
                   </motion.h2>
 
                   <motion.p
@@ -66,10 +74,7 @@ export const ImageExpand = () => {
                     }}
                     className="text-md text-neutral-600"
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Corrupti error eos omnis cupiditate atque, tempore cumque
-                    quaerat itaque id aliquam earum magni accusantium eligendi,
-                    sit facere modi ducimus eaque. Minima, asperiores eveniet!
+                    {description}
                   </motion.p>
                 </motion.div>
               </motion.div>
@@ -85,13 +90,13 @@ export const ImageExpand = () => {
             layoutId="exp-img-cont"
           >
             <motion.img
-              src="/girl-img.jpg"
+              src={src}
               alt="Girl Image"
               className="w-40 rounded-2xl"
               layoutId="expandable-img"
             />
             <motion.p className="mt-2 ml-1" layoutId="expandable-title">
-              Beautiful Girl
+              {title}
             </motion.p>
           </motion.div>
         </div>

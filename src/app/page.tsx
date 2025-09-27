@@ -18,6 +18,8 @@ import { BentoDemo } from "@/components/bento/bento-demo";
 import { ImageExpand } from "@/components/image-expand";
 import Password from "@/components/password";
 import { HoverUnderline } from "@/components/hover-underline";
+import { ActionToolbar } from "@/components/action-toolbar";
+import { QRCode } from "@/components/qr-code";
 
 export default function Home() {
   // const handleClick = () => {
@@ -61,9 +63,26 @@ export default function Home() {
       {/* <InteractiveButton onClick={handleClick}>Something</InteractiveButton> */}
 
       {/* <BentoDemo /> */}
-      {/* <ImageExpand /> */}
+      {/* <ImageExpand
+        title="Beautiful Girl"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Corrupti error eos omnis cupiditate atque, tempore cumque
+                    quaerat itaque id aliquam earum magni accusantium eligendi,
+                    sit facere modi ducimus eaque. Minima, asperiores eveniet!"
+        src="/girl-img.jpg"
+      /> */}
       {/* <Password /> */}
       {/* <HoverUnderline imageSrc="/cloff-ui.png">Cloff Studio</HoverUnderline> */}
+      {/* <DistortImage
+        src="/girl-img.jpg"
+        alt="girl"
+        speed={0.6}
+        decay={0.06}
+        intensity={1}
+        className="h-[700px] w-[500px] rounded-lg"
+      /> */}
+      {/* <ActionToolbar /> Incomplete */}
+      <QRCode />
     </div>
   );
 }

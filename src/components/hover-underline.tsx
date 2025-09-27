@@ -29,7 +29,7 @@ export const HoverUnderline = ({
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
               exit={{ y: "100%" }}
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, ease: [0.455, 0.03, 0.515, 0.955] }}
               className="absolute inset-0 h-full w-full object-cover"
             />
           )}
