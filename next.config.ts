@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"], // recognize .mdx files
 
   images: {
     remotePatterns: [
@@ -11,6 +13,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  experimental: {
+    mdxRs: true, // use the Rust compiler for better perf
+  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

@@ -29,7 +29,7 @@ export const ImageExpand = ({
             >
               <motion.div
                 layoutId="exp-img-cont"
-                className="mx-auto flex max-w-3xl rounded-2xl border border-dashed border-neutral-500 bg-white p-4 shadow-xl"
+                className="mx-auto flex max-w-3xl rounded-2xl border border-dashed border-neutral-700 bg-white p-4 shadow-xl dark:border-neutral-800 dark:bg-black"
               >
                 <motion.img
                   src={src}
@@ -45,7 +45,7 @@ export const ImageExpand = ({
                   transition={{ delay: 0.2 }}
                 >
                   <motion.h2
-                    className="text-4xl font-bold"
+                    className="text-4xl font-bold dark:text-neutral-200"
                     layoutId="expandable-title"
                     initial={{
                       filter: "blur(8px)",
@@ -72,7 +72,7 @@ export const ImageExpand = ({
                       duration: 0.3,
                       delay: 0.4,
                     }}
-                    className="text-md text-neutral-600"
+                    className="text-md text-neutral-600 dark:text-neutral-400"
                   >
                     {description}
                   </motion.p>
@@ -85,7 +85,7 @@ export const ImageExpand = ({
         {/* Compact Card */}
         <div className="flex h-screen w-full items-center justify-center">
           <motion.div
-            className="cursor-pointer rounded-2xl border border-dashed border-neutral-500 p-2 shadow-md"
+            className="cursor-pointer rounded-2xl border border-dashed border-neutral-200 p-2 shadow-md dark:border-neutral-800"
             onClick={() => setOpen(true)}
             layoutId="exp-img-cont"
           >
@@ -95,12 +95,49 @@ export const ImageExpand = ({
               className="w-40 rounded-2xl"
               layoutId="expandable-img"
             />
-            <motion.p className="mt-2 ml-1" layoutId="expandable-title">
-              {title}
-            </motion.p>
+            <div className="flex h-full w-full items-center justify-between px-2 py-1">
+              <motion.p
+                className="dark:text-neutral-100"
+                layoutId="expandable-title"
+              >
+                {title}
+              </motion.p>
+
+              <Arrow />
+            </div>
           </motion.div>
         </div>
       </div>
     </LayoutGroup>
+  );
+};
+
+const Arrow = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M14.4301 5.92969L20.5001 11.9997L14.4301 18.0697"
+        stroke="#fff"
+        stroke-width="1"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        opacity="0.4"
+        d="M3.5 12H20.33"
+        stroke="#fff"
+        stroke-width="1"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   );
 };

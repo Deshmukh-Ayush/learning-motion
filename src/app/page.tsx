@@ -20,6 +20,9 @@ import Password from "@/components/password";
 import { HoverUnderline } from "@/components/hover-underline";
 import { ActionToolbar } from "@/components/action-toolbar";
 import { QRCode } from "@/components/qr-code";
+import { ModeToggle } from "@/components/theme/theme-toggle";
+import { CopyPasteReveal } from "@/components/copy-paste-reveal";
+import { AIInput } from "@/components/ai-input";
 
 export default function Home() {
   const handleClick = () => {
@@ -34,7 +37,7 @@ export default function Home() {
     });
   };
   return (
-    <div className="flex min-h-screen w-full items-center justify-center">
+    <div className="flex min-h-screen w-full items-center justify-center dark:bg-black">
       {/* <ParallaxImage /> */}
       {/* <Practise /> */}
       {/* <Sidebar /> */}
@@ -50,8 +53,8 @@ export default function Home() {
       {/* <Basics /> */}
 
       {/* <ScrollTriggerDemo /> */}
-      {/* 
-      <div className="mx-auto h-[70vh] w-5xl bg-neutral-400">
+
+      {/* <div className="mx-auto h-[70vh] w-5xl bg-neutral-400">
         <DistortImage
           src="/AD.png"
           speed={0.7}
@@ -60,7 +63,9 @@ export default function Home() {
           className="h-[800px] w-full"
         />
       </div> */}
-      {/* <InteractiveButton onClick={handleClick}>Something</InteractiveButton> */}
+      {/* <InteractiveButton className="px-8 py-3 text-3xl" onClick={handleClick}>
+        Click Me
+      </InteractiveButton> */}
 
       {/* <BentoDemo /> */}
       {/* <ImageExpand
@@ -71,8 +76,8 @@ export default function Home() {
                     sit facere modi ducimus eaque. Minima, asperiores eveniet!"
         src="/girl-img.jpg"
       /> */}
-      {/* <Password /> */}
-      {/* <HoverUnderline imageSrc="/cloff-ui.png">Cloff Studio</HoverUnderline> */}
+      {/*<Password /> */}
+      {/* <HoverUnderline imageSrc="/cloff-ui.png">Cloff UI</HoverUnderline> */}
       {/* <DistortImage
         src="/girl-img.jpg"
         alt="girl"
@@ -83,6 +88,9 @@ export default function Home() {
       /> */}
       {/* <ActionToolbar /> Incomplete */}
       {/* <QRCode /> */}
+      {/* <ModeToggle /> */}
+      {/* <CopyPasteReveal /> */}
+      <AIInput />
     </div>
   );
 }

@@ -1,0 +1,120 @@
+# Directory Structure:
+
+# src/content/components/qr-code.mdx
+
+# src/content/components/button.mdx
+
+# src/content/docs/getting-started/introduction.mdx
+
+# src/content/docs/getting-started/installation.mdx
+
+# ---
+
+# File: src/content/components/qr-code.mdx
+
+# ---
+
+# QR Code Component
+
+A beautiful QR code generator component for your React applications.
+
+## Installation
+
+```bash
+npm install qrcode.react
+```
+
+## Usage
+
+```tsx
+import { QRCodeSVG } from "qrcode.react";
+
+export function MyComponent() {
+  return <QRCodeSVG value="https://example.com" />;
+}
+```
+
+## Props
+
+- `value`: The data to encode
+- `size`: Size of the QR code (default: 128)
+- `level`: Error correction level
+
+---
+
+# ---
+
+# File: src/content/components/button.mdx
+
+# ---
+
+# Button Component
+
+A versatile button component with multiple variants.
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+export function MyComponent() {
+  return <Button>Click me</Button>;
+}
+```
+
+---
+
+# ---
+
+# File: src/content/docs/getting-started/introduction.mdx
+
+# ---
+
+# Introduction
+
+Welcome to our component library documentation!
+
+This library provides a set of beautiful, accessible components for your React applications.
+
+## Features
+
+- 🎨 Beautiful design
+- ♿ Fully accessible
+- 🌙 Dark mode support
+- 📱 Responsive
+
+## Getting Started
+
+Check out the [Installation](/docs/getting-started/installation) guide to begin.
+
+---
+
+# ---
+
+# File: src/content/docs/getting-started/installation.mdx
+
+# ---
+
+# Installation
+
+Get started with our component library in minutes.
+
+## Install via npm
+
+```bash
+npm install your-library-name
+```
+
+## Install via yarn
+
+```bash
+yarn add your-library-name
+```
+
+## Setup
+
+Import the styles in your root layout:
+
+```tsx
+import "your-library-name/styles.css";
+```
