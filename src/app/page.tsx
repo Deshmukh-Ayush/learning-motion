@@ -23,19 +23,31 @@ import { QRCode } from "@/components/qr-code";
 import { ModeToggle } from "@/components/theme/theme-toggle";
 import { CopyPasteReveal } from "@/components/copy-paste-reveal";
 import { AIInput } from "@/components/ai-input";
+import { AvatarStack } from "@/components/collections";
 
 export default function Home() {
-  const handleClick = () => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-  };
-
-  const handleClickFailed = () => {
-    return new Promise((_, reject) => {
-      setTimeout(() => reject(new Error("Something went wrong")), 2000);
-    });
-  };
+  const usersData = [
+    {
+      name: "Evil Rabbit",
+      image: "https://avatar.vercel.sh/rabbit",
+    },
+    {
+      name: "shadcn",
+      image: "https://avatar.vercel.sh/shadcn",
+    },
+    {
+      name: "Maxime Heckel",
+      image: "https://avatar.vercel.sh/maxime",
+    },
+    {
+      name: "Ayush Deshmukh",
+      image: "https://avatar.vercel.sh/ayush",
+    },
+    {
+      name: "Lee Robinson",
+      image: "https://avatar.vercel.sh/lee",
+    },
+  ];
   return (
     <div className="flex min-h-screen w-full items-center justify-center dark:bg-black">
       {/* <ParallaxImage /> */}
@@ -90,7 +102,12 @@ export default function Home() {
       {/* <QRCode /> */}
       {/* <ModeToggle /> */}
       {/* <CopyPasteReveal /> */}
-      <AIInput />
+      {/* <AIInput /> */}
+      <AvatarStack
+        items={usersData}
+        title="Contributors"
+        subtitle="5 Active Members"
+      />
     </div>
   );
 }
